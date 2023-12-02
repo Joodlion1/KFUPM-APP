@@ -24,10 +24,10 @@ class StudentIDScreen extends StatelessWidget {
               child: Image.asset('assets/images/id.png'),
             ),
             const Expanded(child: SizedBox()),
-          
           ],
         ),
       ),
     );
   }
 }
+ 
