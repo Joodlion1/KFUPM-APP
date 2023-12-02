@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:kfupm/features/auth/screens/custom_profile_screen.dart';
 import 'package:kfupm/features/auth/screens/custom_sign_in_screen.dart';
 import 'package:kfupm/features/home/home_screen.dart';
+import 'package:kfupm/features/home/welcome_screen.dart';
+import 'package:kfupm/more_screen.dart';
 import 'package:kfupm/routing/go_router_refresh_stream.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -105,7 +107,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/more',
                 name: AppRoute.more.name,
-                builder: (context, state) => const WelcomeScreen(),
+                builder: (context, state) => const MoreScreen(),
               ),
             ],
           ),
