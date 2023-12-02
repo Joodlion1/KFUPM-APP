@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kfupm/routing/app_router.dart';
 
 class WelcomeScreen extends ConsumerWidget {
@@ -9,8 +10,6 @@ class WelcomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(firebaseAuthProvider);
-
     return Column(
       children: [
         SizedBox(
@@ -195,15 +194,10 @@ class WelcomeScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 22),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  StudentService(
-                    asset: "assets/images/bus.png",
-                    title: "Bus Schedule",
-                    onPressed: () {},
-                  ),
-                ],
+              StudentService(
+                asset: "assets/images/bus.png",
+                title: "Bus Schedule",
+                onPressed: () => context.pushNamed(AppRoute.bus.name),
               ),
             ],
           ),
@@ -227,7 +221,7 @@ class StudentService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onPressed,
+      onTap: () => onPressed(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

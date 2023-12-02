@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kfupm/common_widgets/option_widget.dart';
 import 'package:kfupm/common_widgets/options_column.dart';
 import 'package:kfupm/routing/app_router.dart';
@@ -26,40 +27,71 @@ class MoreScreen extends ConsumerWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: const Color.fromRGBO(240, 240, 240, 1),
+                        color: const Color.fromARGB(255, 219, 233, 214),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: ListTile(
                         leading: CircleAvatar(
                           radius: 40,
-                          child: Text(auth.currentUser!.displayName?[0] ?? 'U'),
+                          child: Text(auth.currentUser!.displayName?[0] ?? 'J'),
                         ),
-                        title: Text(auth.currentUser!.displayName ?? 'Unknown'),
+                        title: Text(
+                          auth.currentUser!.displayName ?? 'Jood',
+                          style: TextStyle(fontSize: 20),
+                        ),
                         subtitle: Text(auth.currentUser!.email.toString()),
                         trailing: const Icon(Icons.arrow_forward_ios),
                       ),
                     ),
                     const SizedBox(height: 40),
+                    OptionsColumn(
+                      borderColor: Color.fromRGBO(240, 240, 240, 1),
+                      title: 'Services',
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 2),
+                      titleFontSize: 18,
+                      children: [
+                        const OptionWidget(
+                          icon: Icons.laptop,
+                          title: 'Blackboard',
+                          showBottomBorder: true,
+                        ),
+                        const OptionWidget(
+                          icon: Icons.discount_outlined,
+                          title: 'Discounts',
+                          showBottomBorder: true,
+                        ),
+                        const OptionWidget(
+                          icon: Icons.door_back_door,
+                          title: 'Reserve a room',
+                          showBottomBorder: false,
+                        ),
+                        GestureDetector(
+                          onTap: () => context.pushNamed(AppRoute.map.name),
+                          child: const OptionWidget(
+                            icon: Icons.door_back_door,
+                            title: 'KFUPM map',
+                            showBottomBorder: false,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
                     const OptionsColumn(
-                      borderColor:  Color.fromRGBO(240, 240, 240, 1),
+                      borderColor: Color.fromRGBO(240, 240, 240, 1),
                       title: 'Reach us',
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       titleFontSize: 18,
                       children: [
                         OptionWidget(
-                          icon: Icons.abc,
-                          title: 'title',
+                          icon: Icons.call,
+                          title: 'Importants contacts',
                           showBottomBorder: true,
                         ),
                         OptionWidget(
-                          icon: Icons.abc,
-                          title: 'title',
-                          showBottomBorder: true,
-                        ),
-                        OptionWidget(
-                          icon: Icons.abc,
-                          title: 'title',
+                          icon: Icons.settings,
+                          title: 'Report a problem',
                           showBottomBorder: false,
                         ),
                       ],

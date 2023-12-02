@@ -39,32 +39,33 @@ class HomeScreen extends ConsumerWidget {
               size: 30,
               color: Color.fromARGB(255, 15, 68, 17),
             ),
-            label: 'home',
+            label: 'Home',
           ),
 
           NavigationDestination(
             icon: Icon(
-              Icons.calendar_month,
+              Icons.emoji_events_sharp,
               size: 30,
               color: Color.fromARGB(255, 15, 68, 17),
             ),
-            label: 'schedule',
+            label: 'Events',
           ),
 
           NavigationDestination(
               icon: Icon(
-                Icons.search,
+                Icons.calendar_month,
                 size: 30,
                 color: Color.fromARGB(255, 15, 68, 17),
               ),
-              label: 'search'),
+              label: 'Schedule'),
           NavigationDestination(
-              icon: Icon(
-                Icons.menu,
-                size: 30,
-                color: Color.fromARGB(255, 15, 68, 17),
-              ),
-              label: 'more')
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+              color: Color.fromARGB(255, 15, 68, 17),
+            ),
+            label: 'more',
+          ),
         ],
       ),
     );
