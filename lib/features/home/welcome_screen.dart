@@ -172,9 +172,9 @@ class WelcomeScreen extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: StudentService(
-                      asset: "assets/images/calander.png",
-                      title: "upcoming activities",
-                      onPressed: () {},
+                      asset: "assets/images/card.png",
+                      title: "Student ID",
+                      onPressed: () => context.pushNamed(AppRoute.id.name),
                     ),
                   ),
                   Expanded(
@@ -194,10 +194,16 @@ class WelcomeScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 22),
-              StudentService(
-                asset: "assets/images/bus.png",
-                title: "Bus Schedule",
-                onPressed: () => context.pushNamed(AppRoute.bus.name),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: StudentService(
+                    asset: "assets/images/bus.png",
+                    title: "Bus Schedule",
+                    onPressed: () => context.pushNamed(AppRoute.bus.name),
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kfupm/routing/app_router.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({required this.navigationShell, super.key});
@@ -57,14 +55,14 @@ class HomeScreen extends ConsumerWidget {
                 size: 30,
                 color: Color.fromARGB(255, 15, 68, 17),
               ),
-              label: 'Schedule'),
+              label: 'Calendar'),
           NavigationDestination(
             icon: Icon(
               Icons.menu,
               size: 30,
               color: Color.fromARGB(255, 15, 68, 17),
             ),
-            label: 'more',
+            label: 'More',
           ),
         ],
       ),

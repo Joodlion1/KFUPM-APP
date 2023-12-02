@@ -8,7 +8,6 @@ class BusScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
         child: SafeArea(
           child: Column(
             children: [
@@ -27,10 +26,10 @@ class BusScheduleScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
+                    const Center(
                       child: Text(
                         'Bus Schedule',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),

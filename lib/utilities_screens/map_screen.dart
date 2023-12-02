@@ -7,6 +7,7 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green[800],
         title: const Text(
           'KFUPM Map',
           style: TextStyle(

@@ -30,7 +30,7 @@ class OptionWidget extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 35,
-                  color: Colors.greenAccent,
+                  color: Color.fromARGB(255, 15, 68, 17),
                 ),
               ),
               const SizedBox(width: 10),

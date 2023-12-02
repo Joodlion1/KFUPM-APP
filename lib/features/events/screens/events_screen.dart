@@ -1,13 +1,16 @@
+// ignore: unused_import
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kfupm/features/events/evevnt_repository.dart';
 import 'package:kfupm/models/event.dart';
 import 'package:kfupm/routing/app_router.dart';
 
 final selectedEventProvider = StateProvider<Event>((ref) {
-  return events[0];
+  return e[0];
 });
-final events = [
+final e = [
   Event(
     name: 'Flutter Weekend',
     image: 'assets/images/event1.png',
@@ -63,10 +66,9 @@ class EventsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final event = ref.watch(selectedEventProvider);
-
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green[800],
         title: const Text(
           'Upcoming Events',
           style: TextStyle(
@@ -77,41 +79,26 @@ class EventsScreen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 33.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  EventPoster(event: events[0]),
-                  EventPoster(event: events[1]),
-                ],
-              ),
-            ),
-            const SizedBox(height: 25),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  EventPoster(event: events[2]),
-                  EventPoster(event: events[3]),
-                ],
-              ),
-            ),
-            const SizedBox(height: 25),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  EventPoster(event: events[4]),
-                  EventPoster(event: events[5]),
-                ],
-              ),
-            ),
-            const SizedBox(height: 25),
-          ],
-        ),
+        child: ref.watch(fetchEventsProvider).when(
+            data: (events) => GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: events.length,
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 30,
+                    crossAxisSpacing: 30,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    final event = events[index];
+                    return GestureDetector(
+                      child: EventPoster(event: event),
+                    );
+                  },
+                ),
+            error: (error, stackTrace) => Text(error.toString()),
+            loading: () => const CircularProgressIndicator()),
       ),
     );
   }
@@ -140,8 +127,8 @@ class EventPoster extends ConsumerWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              width: 2,
-              color: Colors.greenAccent,
+              width: 0.25,
+              color: const Color.fromARGB(255, 4, 55, 30),
             ),
             image: DecorationImage(
               image: AssetImage(event.image),

@@ -6,6 +6,11 @@ import 'package:kfupm/common_widgets/option_widget.dart';
 import 'package:kfupm/common_widgets/options_column.dart';
 import 'package:kfupm/routing/app_router.dart';
 
+void signOut(WidgetRef ref) async {
+  await ref.read(firebaseAuthProvider).signOut();
+  ref.read(goRouterProvider).goNamed(AppRoute.signIn.name);
+}
+
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
 
@@ -32,12 +37,13 @@ class MoreScreen extends ConsumerWidget {
                       ),
                       child: ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: Colors.green[900],
                           radius: 40,
                           child: Text(auth.currentUser!.displayName?[0] ?? 'J'),
                         ),
                         title: Text(
                           auth.currentUser!.displayName ?? 'Jood',
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
                         subtitle: Text(auth.currentUser!.email.toString()),
                         trailing: const Icon(Icons.arrow_forward_ios),
@@ -45,7 +51,7 @@ class MoreScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 40),
                     OptionsColumn(
-                      borderColor: Color.fromRGBO(240, 240, 240, 1),
+                      borderColor: const Color.fromRGBO(240, 240, 240, 1),
                       title: 'Services',
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 2),
@@ -69,7 +75,7 @@ class MoreScreen extends ConsumerWidget {
                         GestureDetector(
                           onTap: () => context.pushNamed(AppRoute.map.name),
                           child: const OptionWidget(
-                            icon: Icons.door_back_door,
+                            icon: Icons.map,
                             title: 'KFUPM map',
                             showBottomBorder: false,
                           ),
@@ -77,24 +83,50 @@ class MoreScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    const OptionsColumn(
-                      borderColor: Color.fromRGBO(240, 240, 240, 1),
+                    OptionsColumn(
+                      borderColor: const Color.fromRGBO(240, 240, 240, 1),
                       title: 'Reach us',
                       padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                       titleFontSize: 18,
                       children: [
-                        OptionWidget(
-                          icon: Icons.call,
-                          title: 'Importants contacts',
-                          showBottomBorder: true,
+                        GestureDetector(
+                          onTap: () => context.pushNamed(AppRoute.contact.name),
+                          child: const OptionWidget(
+                            icon: Icons.call,
+                            title: 'Importants contacts',
+                            showBottomBorder: false,
+                          ),
                         ),
-                        OptionWidget(
+                        const OptionWidget(
                           icon: Icons.settings,
                           title: 'Report a problem',
                           showBottomBorder: false,
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 45),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 40,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: const Color.fromRGBO(198, 44, 41, 1),
+                          side: const BorderSide(
+                            width: 1,
+                            color: Color.fromRGBO(198, 44, 41, 1),
+                          ),
+                        ),
+                        onPressed: () => signOut(ref),
+                        child: const Text(
+                          'Sign out',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Color.fromRGBO(198, 44, 41, 1),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

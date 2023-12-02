@@ -9,6 +9,8 @@ import 'package:kfupm/features/events/screens/event_details_screen.dart';
 import 'package:kfupm/features/events/screens/events_screen.dart';
 import 'package:kfupm/features/home/home_screen.dart';
 import 'package:kfupm/features/home/welcome_screen.dart';
+import 'package:kfupm/features/id_card/id_card_screen.dart';
+import 'package:kfupm/utilities_screens/contact_screan.dart';
 import 'package:kfupm/utilities_screens/map_screen.dart';
 import 'package:kfupm/utilities_screens/more_screen.dart';
 import 'package:kfupm/routing/go_router_refresh_stream.dart';
@@ -33,6 +35,8 @@ enum AppRoute {
   more,
   map,
   schedule,
+  contact,
+  id,
 }
 
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
@@ -96,6 +100,11 @@ final goRouterProvider = Provider<GoRouter>(
                       name: AppRoute.gpa.name,
                       builder: (context, state) => const CustomProfileScreen(),
                     ),
+                    GoRoute(
+                      path: 'id',
+                      name: AppRoute.id.name,
+                      builder: (context, state) => const StudentIDScreen(),
+                    ),
                   ],
                 ),
               ],
@@ -139,6 +148,11 @@ final goRouterProvider = Provider<GoRouter>(
                       path: 'map',
                       name: AppRoute.map.name,
                       builder: (context, state) => const MapScreen(),
+                    ),
+                    GoRoute(
+                      path: 'contact',
+                      name: AppRoute.contact.name,
+                      builder: (context, state) => const ContctScreen(),
                     ),
                   ],
                 ),
